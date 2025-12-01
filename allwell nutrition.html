@@ -1,0 +1,1466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Allwell Nutrition</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Allwell Nutrition - Premium natural wellness and nutrition solutions." />
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg-dark: #021b1b;
+      --bg-section: #041f21;
+      --bg-card: #062629;
+      --accent: #a2ff3d;
+      --accent-soft: #e8ffbf;
+      --accent-gold: #d5c09c;
+      --text-main: #f7f9f8;
+      --text-muted: #9cb3ae;
+      --border-soft: rgba(255, 255, 255, 0.06);
+      --shadow-soft: 0 18px 40px rgba(0, 0, 0, 0.45);
+      --radius-lg: 22px;
+      --radius-pill: 999px;
+      --nav-height: 80px;
+      --transition-fast: 0.25s ease;
+      --max-width: 1120px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #062d2d 0, #020c0d 55%, #000 100%);
+      color: var(--text-main);
+      line-height: 1.6;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* ===== Layout ===== */
+    .container {
+      width: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    section {
+      padding: 5rem 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ===== Navbar ===== */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 10;
+      backdrop-filter: blur(18px);
+      background: linear-gradient(to bottom, rgba(2, 15, 16, 0.96), rgba(2, 15, 16, 0.88), transparent);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .nav {
+      height: var(--nav-height);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+    }
+
+    .nav-brand img {
+      height: 42px;
+      width: auto;
+      filter: drop-shadow(0 0 18px rgba(162, 255, 61, 0.4));
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-text span:nth-child(1) {
+      font-size: 1.05rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .brand-text span:nth-child(2) {
+      font-size: 0.72rem;
+      font-weight: 400;
+      color: var(--text-muted);
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      font-size: 0.9rem;
+    }
+
+    .nav-links a {
+      position: relative;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: var(--text-muted);
+      font-size: 0.78rem;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -0.4rem;
+      width: 0;
+      height: 2px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-gold));
+      transition: width var(--transition-fast);
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--text-main);
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      width: 100%;
+    }
+
+    .nav-cta {
+      padding: 0.55rem 1.4rem;
+      border-radius: var(--radius-pill);
+      background: radial-gradient(circle at top left, var(--accent) 0, #7edb2c 40%, #4b7b1e 100%);
+      border: 1px solid rgba(250, 255, 200, 0.35);
+      color: #02120e;
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast), filter var(--transition-fast);
+    }
+
+    .nav-cta:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 18px 46px rgba(0, 0, 0, 0.75);
+      filter: brightness(1.03);
+    }
+
+    .nav-toggle {
+      display: none;
+      width: 24px;
+      height: 24px;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .nav-toggle span {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      border-radius: 999px;
+      background: #f0f7f3;
+      transition: transform 0.25s ease, opacity 0.25s ease, top 0.25s ease, bottom 0.25s ease;
+    }
+
+    .nav-toggle span:nth-child(1) {
+      top: 5px;
+    }
+
+    .nav-toggle span:nth-child(2) {
+      top: 11px;
+    }
+
+    .nav-toggle span:nth-child(3) {
+      bottom: 5px;
+    }
+
+    .nav-toggle.active span:nth-child(1) {
+      top: 11px;
+      transform: rotate(45deg);
+    }
+
+    .nav-toggle.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .nav-toggle.active span:nth-child(3) {
+      bottom: 11px;
+      transform: rotate(-45deg);
+    }
+
+    /* ===== Hero / Parallax ===== */
+    .hero {
+      min-height: 100vh;
+      padding-top: calc(var(--nav-height) + 3rem);
+      display: flex;
+      align-items: center;
+      position: relative;
+      color: var(--text-main);
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: fixed; /* parallax layer 1 */
+      top: -20vh;
+      left: -15vw;
+      width: 80vw;
+      height: 80vw;
+      border-radius: 50%;
+      background: radial-gradient(circle at center, rgba(162, 255, 61, 0.12), transparent 60%);
+      opacity: 0.8;
+      pointer-events: none;
+      z-index: -2;
+    }
+
+    .hero::after {
+      content: "";
+      position: fixed; /* parallax layer 2 */
+      bottom: -25vh;
+      right: -10vw;
+      width: 70vw;
+      height: 70vw;
+      border-radius: 50%;
+      background: radial-gradient(circle at center, rgba(162, 255, 61, 0.15), transparent 60%);
+      opacity: 0.7;
+      pointer-events: none;
+      z-index: -2;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.4fr);
+      align-items: center;
+      gap: 3rem;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.2rem 0.75rem;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(162, 255, 61, 0.25);
+      background: rgba(5, 31, 27, 0.75);
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent-soft);
+    }
+
+    .eyebrow-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: radial-gradient(circle at center, var(--accent) 0, #4b7b1e 60%, #021b1b 100%);
+      box-shadow: 0 0 18px rgba(162, 255, 61, 0.8);
+    }
+
+    .hero h1 {
+      margin-top: 1.4rem;
+      font-size: clamp(2.3rem, 4vw, 3.2rem);
+      line-height: 1.15;
+      letter-spacing: 0.02em;
+    }
+
+    .hero h1 span.gradient {
+      background: linear-gradient(120deg, #f9ffe7 0, var(--accent-soft) 45%, var(--accent-gold) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      margin-top: 1.2rem;
+      max-width: 480px;
+      font-size: 0.96rem;
+      color: var(--text-muted);
+    }
+
+    .hero-badges {
+      margin-top: 1.4rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      font-size: 0.78rem;
+    }
+
+    .badge-pill {
+      padding: 0.25rem 0.8rem;
+      border-radius: var(--radius-pill);
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(230, 255, 210, 0.18);
+      color: var(--accent-soft);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .badge-pill svg {
+      width: 12px;
+      height: 12px;
+      flex: 0 0 auto;
+    }
+
+    .hero-cta-row {
+      margin-top: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .btn-primary {
+      padding: 0.85rem 1.85rem;
+      border-radius: var(--radius-pill);
+      border: 0;
+      cursor: pointer;
+      background: conic-gradient(from 130deg, #dcff6d, #a2ff3d, #6ad42f, #dcff6d);
+      color: #03110a;
+      font-size: 0.88rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.75);
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast), filter var(--transition-fast);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 24px 52px rgba(0, 0, 0, 0.9);
+      filter: brightness(1.03);
+    }
+
+    .btn-ghost {
+      padding: 0.8rem 1.4rem;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(230, 255, 210, 0.22);
+      background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.08), rgba(0, 0, 0, 0.6));
+      color: var(--text-main);
+      font-size: 0.84rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+      transition: background var(--transition-fast), transform var(--transition-fast), border-color var(--transition-fast);
+    }
+
+    .btn-ghost span {
+      display: inline-flex;
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      border: 1px solid rgba(240, 255, 235, 0.4);
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+    }
+
+    .btn-ghost:hover {
+      transform: translateY(-1px);
+      border-color: rgba(255, 255, 255, 0.6);
+      background: radial-gradient(circle at top, rgba(255, 255, 255, 0.12), rgba(0, 0, 0, 0.8));
+    }
+
+    .hero-footnote {
+      margin-top: 1.1rem;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      max-width: 380px;
+    }
+
+    .hero-visual {
+      position: relative;
+    }
+
+    .hero-card {
+      padding: 1.6rem 1.5rem 1.8rem;
+      border-radius: 28px;
+      background: radial-gradient(circle at top left, rgba(162, 255, 61, 0.16), rgba(3, 21, 21, 0.96));
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top right, rgba(255, 255, 255, 0.16), transparent 55%);
+      opacity: 0.4;
+      pointer-events: none;
+    }
+
+    .hero-logo-wrap {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-logo-wrap img {
+      height: 120px;
+      width: auto;
+    }
+
+    .hero-card h3 {
+      text-align: center;
+      font-size: 1rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent-soft);
+      margin-bottom: 1rem;
+    }
+
+    .hero-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+      font-size: 0.78rem;
+    }
+
+    .hero-metric {
+      padding: 0.8rem 0.6rem;
+      border-radius: 18px;
+      border: 1px solid rgba(231, 255, 214, 0.2);
+      background: rgba(3, 17, 17, 0.9);
+      text-align: center;
+    }
+
+    .hero-metric strong {
+      display: block;
+      font-size: 1rem;
+      margin-bottom: 0.1rem;
+      color: var(--accent-soft);
+    }
+
+    .hero-metric span {
+      display: block;
+      color: var(--text-muted);
+      font-size: 0.7rem;
+    }
+
+    .hero-floating-pill {
+      position: absolute;
+      bottom: -0.2rem;
+      right: -0.4rem;
+      padding: 0.55rem 0.8rem;
+      border-radius: 999px;
+      background: rgba(1, 12, 12, 0.9);
+      border: 1px solid rgba(167, 255, 122, 0.3);
+      font-size: 0.7rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--accent-soft);
+      box-shadow: 0 16px 30px rgba(0, 0, 0, 0.9);
+    }
+
+    .hero-floating-pill span.icon {
+      width: 22px;
+      height: 22px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      background: radial-gradient(circle at center, var(--accent) 0, #4b7b1e 60%, #010c0c 100%);
+      color: #021208;
+      font-size: 0.9rem;
+    }
+
+    .hero-bg-tag {
+      position: absolute;
+      top: -2.2rem;
+      right: 0.2rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(184, 204, 188, 0.55);
+    }
+
+    /* ===== Section titles ===== */
+    .section-header {
+      text-align: center;
+      max-width: 640px;
+      margin: 0 auto 3rem auto;
+    }
+
+    .section-eyebrow {
+      font-size: 0.76rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent-soft);
+      margin-bottom: 0.6rem;
+    }
+
+    .section-title {
+      font-size: 1.8rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .section-subtitle {
+      font-size: 0.96rem;
+      color: var(--text-muted);
+    }
+
+    /* ===== About Section ===== */
+    .section-about {
+      background: radial-gradient(circle at top left, rgba(84, 255, 186, 0.08), transparent 55%), var(--bg-section);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.8fr) minmax(0, 2.1fr);
+      gap: 2.8rem;
+      align-items: center;
+    }
+
+    .about-highlight {
+      padding: 1.6rem;
+      border-radius: var(--radius-lg);
+      background: linear-gradient(135deg, rgba(162, 255, 61, 0.12), rgba(6, 32, 32, 0.95));
+      border: 1px solid var(--border-soft);
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .about-highlight h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.8rem;
+      color: var(--accent-soft);
+    }
+
+    .about-highlight ul {
+      list-style: none;
+      margin-top: 0.6rem;
+    }
+
+    .about-highlight li {
+      display: flex;
+      gap: 0.6rem;
+      margin-bottom: 0.45rem;
+    }
+
+    .about-highlight li span {
+      flex: 0 0 auto;
+      font-size: 0.8rem;
+    }
+
+    .about-features {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.4rem;
+    }
+
+    .feature-card {
+      padding: 1.1rem 1.1rem 1.2rem;
+      border-radius: 18px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-soft);
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .feature-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(130deg, rgba(162, 255, 61, 0.05), transparent 55%);
+      opacity: 0;
+      transition: opacity var(--transition-fast);
+    }
+
+    .feature-card:hover::before {
+      opacity: 1;
+    }
+
+    .feature-icon {
+      width: 30px;
+      height: 30px;
+      border-radius: 999px;
+      border: 1px solid rgba(162, 255, 61, 0.45);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      margin-bottom: 0.6rem;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.7);
+    }
+
+    .feature-title {
+      font-size: 0.95rem;
+      margin-bottom: 0.35rem;
+      color: #f4f8f4;
+    }
+
+    /* ===== Products Section ===== */
+    .section-products {
+      background: radial-gradient(circle at bottom right, rgba(162, 255, 61, 0.08), transparent 55%), #020f10;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.6rem;
+    }
+
+    .product-card {
+      position: relative;
+      padding: 1.4rem 1.2rem 1.5rem;
+      border-radius: 20px;
+      background: radial-gradient(circle at top, rgba(58, 255, 119, 0.12), rgba(3, 19, 19, 0.96));
+      border: 1px solid rgba(237, 255, 227, 0.12);
+      box-shadow: var(--shadow-soft);
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      overflow: hidden;
+    }
+
+    .product-tag {
+      font-size: 0.7rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent-soft);
+      margin-bottom: 0.6rem;
+    }
+
+    .product-title {
+      font-size: 1.02rem;
+      margin-bottom: 0.5rem;
+      color: var(--text-main);
+    }
+
+    .product-meta {
+      margin-top: 0.6rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.76rem;
+      color: var(--accent-soft);
+    }
+
+    .product-pill {
+      padding: 0.25rem 0.6rem;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(230, 255, 210, 0.22);
+      background: rgba(0, 0, 0, 0.4);
+    }
+
+    .product-bg-leaf {
+      position: absolute;
+      right: -40px;
+      bottom: -40px;
+      width: 130px;
+      height: 130px;
+      background: radial-gradient(circle at center, rgba(162, 255, 61, 0.45), transparent 60%);
+      opacity: 0.3;
+      transform: rotate(-24deg);
+    }
+
+    /* ===== Benefits Section (parallax-ish band) ===== */
+    .section-benefits {
+      background: linear-gradient(135deg, #031412, #020808);
+      overflow: hidden;
+    }
+
+    .benefits-band {
+      position: relative;
+      margin: 0 auto;
+      max-width: var(--max-width);
+      border-radius: 999px;
+      padding: 1.1rem 1.2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+      align-items: center;
+      justify-content: space-between;
+      border: 1px solid rgba(243, 255, 210, 0.18);
+      background: radial-gradient(circle at top left, rgba(200, 255, 150, 0.15), rgba(4, 27, 22, 0.95));
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.9);
+    }
+
+    .benefits-band-main {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.9rem;
+    }
+
+    .benefits-band-main strong {
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 0.72rem;
+    }
+
+    .benefits-band-main span.dot {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: radial-gradient(circle at center, var(--accent) 0, #6fdd34 50%, #041916 100%);
+      box-shadow: 0 0 26px rgba(162, 255, 61, 0.9);
+      flex: 0 0 auto;
+    }
+
+    .benefits-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      font-size: 0.8rem;
+    }
+
+    .benefits-list span {
+      padding: 0.3rem 0.75rem;
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.55);
+      border: 1px solid rgba(234, 255, 220, 0.28);
+      color: var(--accent-soft);
+    }
+
+    /* ===== Testimonials ===== */
+    .section-testimonials {
+      background: radial-gradient(circle at top right, rgba(189, 255, 116, 0.1), transparent 55%), #020d0e;
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.6rem;
+    }
+
+    .testimonial-card {
+      padding: 1.4rem 1.2rem 1.4rem;
+      border-radius: 20px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-soft);
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .testimonial-card::before {
+      content: "“";
+      position: absolute;
+      top: -1.2rem;
+      right: 1.2rem;
+      font-size: 5rem;
+      font-family: Georgia, "Times New Roman", serif;
+      color: rgba(255, 255, 255, 0.04);
+    }
+
+    .testimonial-name {
+      margin-top: 0.9rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.7rem;
+    }
+
+    .testimonial-name strong {
+      font-size: 0.88rem;
+      color: #f0f6f2;
+    }
+
+    .testimonial-name span {
+      font-size: 0.76rem;
+      color: var(--accent-soft);
+    }
+
+    /* ===== CTA / Contact ===== */
+    .section-cta {
+      background: radial-gradient(circle at center, rgba(162, 255, 61, 0.1), #000908);
+    }
+
+    .cta-inner {
+      max-width: 760px;
+      margin: 0 auto;
+      text-align: center;
+      padding: 2.6rem 2rem 2.4rem;
+      border-radius: 28px;
+      background: radial-gradient(circle at top, rgba(230, 255, 210, 0.18), rgba(5, 27, 23, 0.96));
+      border: 1px solid rgba(243, 255, 214, 0.2);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .cta-inner h2 {
+      font-size: 1.6rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .cta-inner p {
+      font-size: 0.96rem;
+      color: var(--text-muted);
+      margin-bottom: 1.7rem;
+    }
+
+    .cta-form {
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1.2fr);
+      gap: 0.9rem;
+      max-width: 560px;
+      margin: 0.2rem auto 0.6rem;
+    }
+
+    .cta-input-wrap {
+      position: relative;
+    }
+
+    .cta-input-wrap input {
+      width: 100%;
+      padding: 0.9rem 1.05rem;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(223, 255, 214, 0.25);
+      background: rgba(0, 0, 0, 0.6);
+      color: var(--text-main);
+      font-size: 0.86rem;
+      outline: none;
+      transition: border-color var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast);
+    }
+
+    .cta-input-wrap input::placeholder {
+      color: rgba(200, 220, 210, 0.5);
+    }
+
+    .cta-input-wrap input:focus {
+      border-color: rgba(170, 255, 130, 0.8);
+      background: rgba(0, 0, 0, 0.8);
+      box-shadow: 0 0 0 1px rgba(170, 255, 130, 0.5);
+    }
+
+    .cta-note {
+      font-size: 0.76rem;
+      color: var(--text-muted);
+    }
+
+    /* ===== Footer ===== */
+    footer {
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 1.6rem 0 2rem;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      background: #010708;
+    }
+
+    .footer-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: var(--text-muted);
+    }
+
+    .footer-links a:hover {
+      color: var(--accent-soft);
+    }
+
+    /* ===== Scroll / reveal animations ===== */
+    .fade-in-up {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .fade-in-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 960px) {
+      .hero-grid {
+        grid-template-columns: minmax(0, 1.2fr);
+      }
+
+      .hero {
+        padding-top: calc(var(--nav-height) + 4rem);
+      }
+
+      .hero-visual {
+        margin-top: 2.6rem;
+      }
+
+      .about-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .products-grid,
+      .testimonials-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .benefits-band {
+        border-radius: 24px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: var(--nav-height);
+        right: 0;
+        left: 0;
+        padding: 0.8rem 1.5rem 1.2rem;
+        flex-direction: column;
+        gap: 0.9rem;
+        background: rgba(2, 13, 13, 0.98);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        transform: translateY(-16px);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.22s ease, transform 0.22s ease;
+      }
+
+      .nav-links.open {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+      }
+
+      .nav-cta {
+        width: 100%;
+        text-align: center;
+        justify-content: center;
+      }
+
+      .hero {
+        padding-bottom: 4rem;
+      }
+
+      .hero-card {
+        margin-inline: auto;
+        max-width: 360px;
+      }
+
+      .products-grid,
+      .testimonials-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .benefits-band {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .cta-inner {
+        padding-inline: 1.3rem;
+      }
+
+      .cta-form {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-badges {
+        flex-direction: column;
+      }
+
+      .benefits-band-main {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- ===== Header / Nav ===== -->
+  <header>
+    <div class="container nav">
+      <div class="nav-brand">
+        <!-- Replace logo.jpg with the actual relative path or file name of your logo -->
+        <img src="logo.jpg" alt="Allwell Nutrition Logo" />
+        <div class="brand-text">
+          <span>ALLWELL NUTRITION</span>
+          <span>ROOTED IN REAL FOODS</span>
+        </div>
+      </div>
+
+      <nav>
+        <div class="nav-toggle" id="navToggle">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <div class="nav-links" id="navLinks">
+          <a href="#about">About</a>
+          <a href="#products">Formulas</a>
+          <a href="#testimonials">Stories</a>
+          <a href="#contact" class="nav-cta">Book a consult</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== Hero (Parallax) ===== -->
+  <section class="hero" id="top">
+    <div class="container hero-grid">
+      <div>
+        <div class="eyebrow fade-in-up">
+          <span class="eyebrow-dot"></span>
+          WHOLE-BODY NUTRITION • MODERN SCIENCE
+        </div>
+
+        <h1 class="fade-in-up">
+          Imagine your <span class="gradient">health fully nourished</span> – from the inside out.
+        </h1>
+
+        <p class="hero-subtitle fade-in-up">
+          At Allwell Nutrition, we design premium, plant-forward formulations that work with your body –
+          balancing energy, mood, digestion and long-term vitality in one simple daily ritual.
+        </p>
+
+        <div class="hero-badges fade-in-up">
+          <div class="badge-pill">
+            <!-- check icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" aria-hidden="true">
+              <path fill="currentColor" d="M6.2 12.3 2.4 8.4l1.1-1.1 2.7 2.7 6.3-6.3 1.1 1.1z" />
+            </svg>
+            Functional blends, dietitian-led
+          </div>
+          <div class="badge-pill">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" aria-hidden="true">
+              <path fill="currentColor" d="M8 1.3 1.8 4.5v7l6.2 3.2 6.2-3.2v-7zm0 1.6 4.4 2.3-1.6.8L8 4.2 5.2 6 3.6 5.2zm-5 3.8L5 7.9v4.2L3 11zM6 12.7V8.4l2-1.1 2 1.1v4.3L8 14zM11 12V7.9l2-1.1v4z" />
+            </svg>
+            100% natural ingredients
+          </div>
+          <div class="badge-pill">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" aria-hidden="true">
+              <path fill="currentColor" d="M8 1.3 2 3.5v4.3c0 3.1 2.6 5.7 6 6.9 3.4-1.2 6-3.8 6-6.9V3.5z" />
+            </svg>
+            Crafted in small batches
+          </div>
+        </div>
+
+        <div class="hero-cta-row fade-in-up">
+          <button class="btn-primary" onclick="scrollToSection('contact')">
+            Start my wellness plan
+          </button>
+
+          <button class="btn-ghost" onclick="scrollToSection('about')">
+            <span>⟶</span> Learn how it works
+          </button>
+        </div>
+
+        <p class="hero-footnote fade-in-up">
+          No fads, no quick fixes. Just rooted, science-backed nutrition that feels as good as it tastes.
+        </p>
+      </div>
+
+      <div class="hero-visual fade-in-up">
+        <div class="hero-card">
+          <div class="hero-bg-tag">DAILY NOURISH • BALANCED LIFE</div>
+          <div class="hero-logo-wrap">
+            <img src="logo.jpg" alt="Allwell Nutrition logo" />
+          </div>
+          <h3>Allwell Daily Ritual</h3>
+          <div class="hero-metrics">
+            <div class="hero-metric">
+              <strong>+24</strong>
+              <span>Active botanicals</span>
+            </div>
+            <div class="hero-metric">
+              <strong>3 in 1</strong>
+              <span>Energy • Gut • Mood</span>
+            </div>
+            <div class="hero-metric">
+              <strong>0</strong>
+              <span>Artificial fillers</span>
+            </div>
+          </div>
+
+          <div class="hero-floating-pill">
+            <span class="icon">✓</span>
+            Personalized guidance included
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== About ===== -->
+  <section class="section-about" id="about">
+    <div class="container">
+      <div class="section-header fade-in-up">
+        <div class="section-eyebrow">WHY ALLWELL</div>
+        <h2 class="section-title">Modern nutrition, grounded in nature.</h2>
+        <p class="section-subtitle">
+          We blend whole-food ingredients, gentle adaptogens and targeted nutrients into simple routines that
+          meet you where you are – whether you are rebuilding your energy, healing your gut, or elevating performance.
+        </p>
+      </div>
+
+      <div class="about-grid">
+        <div class="about-highlight fade-in-up">
+          <h3>Created by nutrition experts, tailored to real life.</h3>
+          <p>
+            Allwell Nutrition was born from a simple idea: premium support should feel effortless – not overwhelming.
+            Every formula and program is:
+          </p>
+          <ul>
+            <li>
+              <span>🌿</span>
+              <p>Rooted in organic plants, whole-food extracts and clinically studied nutrients.</p>
+            </li>
+            <li>
+              <span>🧪</span>
+              <p>Free from artificial sweeteners, synthetic colors and unnecessary fillers.</p>
+            </li>
+            <li>
+              <span>🤍</span>
+              <p>Designed to be gentle on digestion and easy to build into your daily rituals.</p>
+            </li>
+            <li>
+              <span>📊</span>
+              <p>Continuously refined with real client feedback and the latest nutritional science.</p>
+            </li>
+          </ul>
+        </div>
+
+        <div class="about-features">
+          <div class="feature-card fade-in-up">
+            <div class="feature-icon">🫖</div>
+            <div class="feature-title">Morning reset</div>
+            <p>
+              Start the day with mineral-rich blends that hydrate, remineralize and gently wake your metabolism
+              – without the jitters or crash.
+            </p>
+          </div>
+
+          <div class="feature-card fade-in-up">
+            <div class="feature-icon">💚</div>
+            <div class="feature-title">Gut &amp; glow</div>
+            <p>
+              Support digestion, skin and immunity with prebiotic fibers, soothing botanicals and plant-based antioxidants.
+            </p>
+          </div>
+
+          <div class="feature-card fade-in-up">
+            <div class="feature-icon">⚖️</div>
+            <div class="feature-title">Stress support</div>
+            <p>
+              Adaptogenic herbs and micronutrients that help balance your stress response and sustain focus throughout the day.
+            </p>
+          </div>
+
+          <div class="feature-card fade-in-up">
+            <div class="feature-icon">🌙</div>
+            <div class="feature-title">Evening unwind</div>
+            <p>
+              Mineral-rich, calming blends to help your nervous system soften, so your sleep can naturally restore your body.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Products / Formulas ===== -->
+  <section class="section-products" id="products">
+    <div class="container">
+      <div class="section-header fade-in-up">
+        <div class="section-eyebrow">SIGNATURE FORMULAS</div>
+        <h2 class="section-title">A collection built to nourish every layer of you.</h2>
+        <p class="section-subtitle">
+          Mix and match or follow our guided protocols – each Allwell formula is crafted to stand alone and
+          work synergistically as a system.
+        </p>
+      </div>
+
+      <div class="products-grid">
+        <article class="product-card fade-in-up">
+          <div class="product-tag">MORNING</div>
+          <h3 class="product-title">Rise &amp; Restore Greens</h3>
+          <p>
+            Concentrated greens, algae and citrus polyphenols to support detox pathways, liver health and
+            clean, stable energy without stimulants.
+          </p>
+          <div class="product-meta">
+            <span class="product-pill">30-day supply</span>
+            <span>Best before breakfast</span>
+          </div>
+          <div class="product-bg-leaf"></div>
+        </article>
+
+        <article class="product-card fade-in-up">
+          <div class="product-tag">ANYTIME</div>
+          <h3 class="product-title">Calm Focus Elixir</h3>
+          <p>
+            Adaptogens, B-vitamins and amino acids to sharpen focus while keeping the nervous system feeling centred,
+            grounded and resilient.
+          </p>
+          <div class="product-meta">
+            <span class="product-pill">Caffeine-free clarity</span>
+            <span>Perfect for workdays</span>
+          </div>
+          <div class="product-bg-leaf"></div>
+        </article>
+
+        <article class="product-card fade-in-up">
+          <div class="product-tag">EVENING</div>
+          <h3 class="product-title">Deep Nourish Night Blend</h3>
+          <p>
+            Magnesium, glycine and soothing botanicals that help quiet a busy mind, support muscle recovery and deepen sleep.
+          </p>
+          <div class="product-meta">
+            <span class="product-pill">Mix with warm water</span>
+            <span>1 hr before bed</span>
+          </div>
+          <div class="product-bg-leaf"></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Benefits band (parallax-feel stripe) ===== -->
+  <section class="section-benefits">
+    <div class="benefits-band fade-in-up" data-parallax-speed="0.4">
+      <div class="benefits-band-main">
+        <span class="dot"></span>
+        <div>
+          <strong>ALLWELL BENEFITS</strong>
+          <div>Small shifts, compounding results.</div>
+        </div>
+      </div>
+      <div class="benefits-list">
+        <span>Healthy, stable energy</span>
+        <span>Supported digestion &amp; gut comfort</span>
+        <span>Improved focus &amp; mood</span>
+        <span>Deep, restorative sleep</span>
+        <span>Glowing skin from within</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Testimonials ===== -->
+  <section class="section-testimonials" id="testimonials">
+    <div class="container">
+      <div class="section-header fade-in-up">
+        <div class="section-eyebrow">CLIENT STORIES</div>
+        <h2 class="section-title">Wellness that fits into real routines.</h2>
+        <p class="section-subtitle">
+          From busy parents to performance-driven professionals, Allwell clients share one thing in common:
+          they wanted a sustainable way to feel good again.
+        </p>
+      </div>
+
+      <div class="testimonials-grid">
+        <article class="testimonial-card fade-in-up">
+          “Within two weeks of the Morning Greens, my afternoon crashes disappeared. I finally feel even energy
+          from breakfast to bedtime – and my skin is the clearest it’s been in years.”
+          <div class="testimonial-name">
+            <div>
+              <strong>Jasmine R.</strong>
+              <span>Designer &amp; mum of two</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="testimonial-card fade-in-up">
+          “The Calm Focus Elixir became part of my pre-meeting ritual. I think more clearly, my anxiety dropped,
+          and I don’t rely on coffee all day anymore.”
+          <div class="testimonial-name">
+            <div>
+              <strong>Michael T.</strong>
+              <span>Product lead</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="testimonial-card fade-in-up">
+          “I used to toss and turn every night. The Night Blend plus a few lifestyle tweaks from my Allwell consult
+          completely transformed my sleep.”
+          <div class="testimonial-name">
+            <div>
+              <strong>Anita S.</strong>
+              <span>Yoga teacher</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA / Contact ===== -->
+  <section class="section-cta" id="contact">
+    <div class="container">
+      <div class="cta-inner fade-in-up">
+        <h2>Ready to feel all-round well?</h2>
+        <p>
+          Leave your email and our team will send you a short intake form plus a suggested Allwell Nutrition ritual
+          tailored to your lifestyle and goals.
+        </p>
+
+        <form class="cta-form" onsubmit="handleFormSubmit(event)">
+          <div class="cta-input-wrap">
+            <input type="email" id="emailInput" placeholder="Your best email address" required />
+          </div>
+          <button type="submit" class="btn-primary">Get my plan</button>
+        </form>
+
+        <p class="cta-note" id="formMessage">
+          We respect your time and your inbox. Expect thoughtful guidance, never spam.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Footer ===== -->
+  <footer>
+    <div class="container footer-row">
+      <div>© <span id="year"></span> Allwell Nutrition. All rights reserved.</div>
+      <div class="footer-links">
+        <a href="#top">Back to top</a>
+        <a href="mailto:hello@allwellnutrition.com">hello@allwellnutrition.com</a>
+        <a href="#contact">Book a consult</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== JS (combined inline) ===== -->
+  <script>
+    // Mobile navigation toggle
+    const navToggle = document.getElementById("navToggle");
+    const navLinks = document.getElementById("navLinks");
+
+    navToggle.addEventListener("click", () => {
+      navToggle.classList.toggle("active");
+      navLinks.classList.toggle("open");
+    });
+
+    // Close nav after clicking a link (mobile)
+    document.querySelectorAll(".nav-links a").forEach((link) => {
+      link.addEventListener("click", () => {
+        navToggle.classList.remove("active");
+        navLinks.classList.remove("open");
+      });
+    });
+
+    // Smooth scroll helper for buttons
+    function scrollToSection(id) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const yOffset = -70;
+      const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: y, behavior: "smooth" });
+    }
+
+    // Highlight nav link on scroll
+    const sections = document.querySelectorAll("section[id]");
+    const navAnchors = document.querySelectorAll(".nav-links a");
+
+    function setActiveNav() {
+      let currentId = "";
+      const scrollPos = window.scrollY + 140;
+
+      sections.forEach((sec) => {
+        if (scrollPos >= sec.offsetTop && scrollPos < sec.offsetTop + sec.offsetHeight) {
+          currentId = sec.getAttribute("id");
+        }
+      });
+
+      navAnchors.forEach((a) => {
+        a.classList.toggle("active", a.getAttribute("href").slice(1) === currentId);
+      });
+    }
+    window.addEventListener("scroll", setActiveNav);
+    setActiveNav();
+
+    // Simple reveal-on-scroll using IntersectionObserver
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+
+    document.querySelectorAll(".fade-in-up").forEach((el) => observer.observe(el));
+
+    // Parallax effect for benefits band (subtle)
+    const parallaxEls = document.querySelectorAll("[data-parallax-speed]");
+
+    window.addEventListener("scroll", () => {
+      const scrollTop = window.scrollY;
+      parallaxEls.forEach((el) => {
+        const speed = parseFloat(el.dataset.parallaxSpeed || "0.3");
+        const offset = scrollTop * speed * -0.15;
+        el.style.transform = `translateY(${offset}px)`;
+      });
+    });
+
+    // CTA form handler (demo only)
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      const email = document.getElementById("emailInput").value.trim();
+      const msg = document.getElementById("formMessage");
+
+      if (!email) return;
+
+      msg.textContent = "Thank you! Your personalized Allwell ritual details will arrive shortly.";
+      msg.style.color = "#d5fcd0";
+      e.target.reset();
+    }
+
+    // Dynamic year in footer
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
